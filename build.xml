@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<project name="azorestv" default="jar" basedir="..">
+	
+	<property name="wowza.lib.dir" value="C:/Program Files (x86)/Wowza Media Systems/Wowza Streaming Engine 4.4.1/lib"/>
+	<property name="jar.filename" value="azorestv.jar"/>
+	<property name="core.build.dir" value="bin"/>
+	<property name="marshall.dir" value="tmp"/>
+	<property name="addon.lib.dir" value="libs"/>
+	<target name="jar">
+			<mkdir dir="${marshall.dir}"/>
+			<unzip dest="${marshall.dir}">
+				<fileset dir="${addon.lib.dir}">
+					<include name="**/*.jar"/>
+				</fileset>
+			</unzip>
+			<jar jarfile="${wowza.lib.dir}/${jar.filename}">
+				<fileset dir="${core.build.dir}"/>
+				<fileset dir="${marshall.dir}"/>
+			</jar>
+			<delete dir="${marshall.dir}" />
+		</target>
+	 
+</project>
+ 
